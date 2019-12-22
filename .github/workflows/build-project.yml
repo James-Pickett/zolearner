@@ -1,0 +1,61 @@
+name: Build and Release
+on: [push]
+jobs:
+  build:
+    name: build and release
+    runs-on: ubuntu-latest
+    steps:
+      - name: check out code
+        uses: actions/checkout@v2
+
+      - name: create artifacts
+        uses: james-pickett/godot-build-action@master
+        with:
+          build_file_name: godot-hello-cicd
+          android_debug_username: ${{ secrets.ANDROID_DEBUG_USERNAME }}
+          android_debug_password: ${{ secrets.ANDROID_DEBUG_PASSWORD }}
+
+      - name: build release tag from branch name
+        run: echo ::set-output name=tag::${GITHUB_REF##*/}-${GITHUB_SHA}
+        id: tag
+
+      - name: create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          release_name: ${{ steps.tag.outputs.tag }}
+          draft: false
+          prerelease: true
+
+      - name: upload android release asset
+        id: upload-release-asset-android
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`.
+          # See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/android/godot-hello-cicd.apk
+          asset_name: godot-hello-cicd-android.apk
+          asset_content_type: application/vnd.android.package-archive
+
+      - name: Send mail
+        uses: dawidd6/action-send-mail@master
+        with:
+          server_address: smtp.sendgrid.net
+          server_port: 465
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: ${{ github.repository }} Test
+          # Literal body:
+          body: |
+            Android Debug
+            ${{ steps.upload-release-asset-android.outputs.browser_download_url }}
+          to: ${{secrets.RELEASE_EMAIL_RECIPIENTS}}
+          from: ${{ github.repository }}
+          # Optional content type:
+          content_type: text/html

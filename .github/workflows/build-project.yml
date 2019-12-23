@@ -19,8 +19,8 @@ jobs:
         id: upload-build-artifact
         run: |
           #!/bin/bash
-          response=$(curl -F "file=@./build/android/zolearner.apk" https://file.io)
-          link=$(echo "$response" | grep -oP '(?<="link":")[^"]*')
+          response=$(curl -F file=@./build/android/zolearner.apk https://api.anonymousfiles.io/)
+          link=$(echo "$response" | grep -oP '(?<="url": ")[^"]*')
           echo ::set-output name=download_url::$link
 
       - name: send download link(s)

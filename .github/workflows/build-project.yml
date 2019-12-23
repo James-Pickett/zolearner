@@ -23,7 +23,7 @@ jobs:
         id: upload-build-artifact
         run: |
           #!/bin/bash
-          response=$(curl -F "file=@./test.apk" https://file.io)
+          response=$(curl -F "file=@./build/android/zolearner.apk" https://file.io)
           link=$(echo "$response" | grep -oP '(?<="link":")[^"]*')
           echo ::set-output name=download_url::echo $link
 

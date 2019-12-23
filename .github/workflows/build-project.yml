@@ -11,7 +11,7 @@ jobs:
       - name: create artifacts
         uses: james-pickett/godot-build-action@master
         with:
-          build_file_name: godot-hello-cicd
+          build_file_name: zolearner
           android_debug_username: ${{ secrets.ANDROID_DEBUG_USERNAME }}
           android_debug_password: ${{ secrets.ANDROID_DEBUG_PASSWORD }}
 
@@ -19,29 +19,37 @@ jobs:
         run: echo ::set-output name=tag::${GITHUB_REF##*/}-${GITHUB_SHA}
         id: tag
 
-      - name: create release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: ${{ steps.tag.outputs.tag }}
-          release_name: ${{ steps.tag.outputs.tag }}
-          draft: false
-          prerelease: true
+      - name: upload build artifact
+        id: upload-build-artifact
+        run: |
+          #!/bin/bash
+          response=$(curl -F "file=@./test.apk" https://file.io)
+          link=$(echo "$response" | grep -oP '(?<="link":")[^"]*')
+          echo ::set-output name=download_url::echo $link
 
-      - name: upload android release asset
-        id: upload-release-asset-android
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`.
-          # See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/android/godot-hello-cicd.apk
-          asset_name: godot-hello-cicd-android.apk
-          asset_content_type: application/vnd.android.package-archive
+      # - name: create release
+      #   id: create_release
+      #   uses: actions/create-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      #   with:
+      #     tag_name: ${{ steps.tag.outputs.tag }}
+      #     release_name: ${{ steps.tag.outputs.tag }}
+      #     draft: false
+      #     prerelease: true
+
+      # - name: upload android release asset
+      #   id: upload-release-asset-android
+      #   uses: actions/upload-release-asset@v1.0.1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`.
+      #     # See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
+      #     asset_path: ./build/android/zolearner.apk
+      #     asset_name: zolearner.apk
+      #     asset_content_type: application/vnd.android.package-archive
 
       - name: Send mail
         uses: dawidd6/action-send-mail@master
@@ -54,7 +62,7 @@ jobs:
           # Literal body:
           body: |
             Android Debug
-            ${{ steps.upload-release-asset-android.outputs.browser_download_url }}
+            ${{ steps.upload-build-artifact.outputs.download_url }}
           to: ${{secrets.RELEASE_EMAIL_RECIPIENTS}}
           from: ${{ github.repository }}
           # Optional content type:

@@ -15,9 +15,16 @@ _global_script_class_icons={
 
 [application]
 
-config/name="godot-hello-cicd"
-run/main_scene="res://levels/main/main.tscn"
+config/name="zolearner"
+run/main_scene="res://levels/MainMenuInterface.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [rendering]
 

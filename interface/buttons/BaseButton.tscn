@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://interface/themes/default_theme.tres" type="Theme" id=1]
-
-[node name="BaseButton" type="Button"]
-margin_right = 291.0
-margin_bottom = 147.0
-theme = ExtResource( 1 )
-text = "I'm A Base Button"

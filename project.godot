@@ -16,8 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="zolearner"
-run/main_scene="res://levels/MainMenuInterface.tscn"
+run/main_scene="res://levels/MainMenu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+SceneSwitcher="*res://globals/SceneSwitcher.gd"
 
 [display]
 

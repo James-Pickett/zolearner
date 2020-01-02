@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/themes/default_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/scenes/SceneSwitchButton.gd" type="Script" id=2]
+
+
+
+[node name="SceneSwitchButton" type="Button"]
+margin_right = 291.0
+margin_bottom = 147.0
+theme = ExtResource( 1 )
+text = "I'm A Base Button"
+script = ExtResource( 2 )
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/scenes/answer/AnswerButtonOrchestrator.gd" type="Script" id=1]
+[ext_resource path="res://src/scenes/answer/AnswerButton.tscn" type="PackedScene" id=2]
+
+[node name="AnswerButtonOrchestrator" type="Node"]
+script = ExtResource( 1 )
+answer_button = ExtResource( 2 )

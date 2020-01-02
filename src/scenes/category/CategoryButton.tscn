@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/fonts/default_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/scenes/category/CategoryButton.gd" type="Script" id=2]
+
+[node name="CategoryButton" type="Button"]
+margin_right = 400.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 400, 150 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "CATEGORY"
+clip_text = true
+script = ExtResource( 2 )

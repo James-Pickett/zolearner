@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/scenes/category/CategoryButtonAdder.tscn" type="PackedScene" id=1]
+
+[node name="CategorySelect" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 640.0
+margin_top = 360.0
+margin_right = 640.0
+margin_bottom = 360.0
+custom_constants/separation = 16
+
+[node name="CategoryButtonAdder" parent="CenterContainer/VBoxContainer" instance=ExtResource( 1 )]

@@ -8,20 +8,81 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "TextureButton",
+"class": "AnswerButton",
+"language": "GDScript",
+"path": "res://src/scenes/answer/AnswerButton.gd"
+}, {
+"base": "Node",
+"class": "AnswerButtonOrchestrator",
+"language": "GDScript",
+"path": "res://src/scenes/answer/AnswerButtonOrchestrator.gd"
+}, {
+"base": "Node",
+"class": "Config",
+"language": "GDScript",
+"path": "res://src/scripts/globals/Config.gd"
+}, {
+"base": "Resource",
+"class": "Game",
+"language": "GDScript",
+"path": "res://src/scripts/lib/Game.gd"
+}, {
+"base": "Resource",
+"class": "GameFactory",
+"language": "GDScript",
+"path": "res://src/scripts/lib/GameFactory.gd"
+}, {
+"base": "Node",
+"class": "GlobalSession",
+"language": "GDScript",
+"path": "res://src/scripts/globals/GlobalSession.gd"
+}, {
+"base": "Resource",
+"class": "Question",
+"language": "GDScript",
+"path": "res://src/scripts/lib/Question.gd"
+}, {
+"base": "AudioStreamPlayer2D",
+"class": "QuestionAudio",
+"language": "GDScript",
+"path": "res://src/scenes/question/QuestionAudio.gd"
+}, {
+"base": "Node",
+"class": "QuestionSession",
+"language": "GDScript",
+"path": "res://src/scenes/question/QuestionSession.gd"
+} ]
 _global_script_class_icons={
-
+"AnswerButton": "",
+"AnswerButtonOrchestrator": "",
+"Config": "",
+"Game": "",
+"GameFactory": "",
+"GlobalSession": "",
+"Question": "",
+"QuestionAudio": "",
+"QuestionSession": ""
 }
 
 [application]
 
 config/name="zolearner"
-run/main_scene="res://levels/MainMenu.tscn"
+run/main_scene="res://src/levels/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-SceneSwitcher="*res://globals/SceneSwitcher.gd"
+Config="*res://src/scripts/globals/Config.gd"
+Events="*res://src/scripts/globals/Events.gd"
+SceneSwitcher="*res://src/scripts/globals/SceneSwitcher.gd"
+GlobalSession="*res://src/scripts/globals/GlobalSession.gd"
+
+[debug]
+
+gdscript/warnings/enable=false
+gdscript/completion/autocomplete_setters_and_getters=true
 
 [display]
 

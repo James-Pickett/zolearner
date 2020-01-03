@@ -10,4 +10,4 @@ const GAME_LEVEL_PATH := "res://src/levels/Game.tscn"
 const CATEGORIES_FOLDER_PATH := "res://user_content/questions/categories/"
 
 # game options (maybe one day make configurable)
-const ANSWER_OPTIONS_COUNT := 3
+const ANSWER_OPTIONS_COUNT := 6

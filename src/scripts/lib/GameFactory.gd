@@ -65,9 +65,9 @@ func get_question_file_paths(category_path: String) -> Array:
 		var file := dir.get_next()
 		if file == "":
 			break
-		if file.ends_with(".import"):
+		if !file.ends_with(".import"):
 			continue 
-		question_paths.append(category_path + file)
+		question_paths.append(category_path + file.replace(".import", ""))
 
 	dir.list_dir_end()
 	

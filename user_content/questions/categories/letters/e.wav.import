@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/e.wav-aa7f7c508a4ed8fe1e88f7fe1088de4a.sample"
+
+[deps]
+
+source_file="res://user_content/questions/categories/letters/e.wav"
+dest_files=[ "res://.import/e.wav-aa7f7c508a4ed8fe1e88f7fe1088de4a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

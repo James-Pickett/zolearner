@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/m.wav-69c5bb5f266cba753bdd4466fd2df962.sample"
+
+[deps]
+
+source_file="res://user_content/questions/categories/letters/m.wav"
+dest_files=[ "res://.import/m.wav-69c5bb5f266cba753bdd4466fd2df962.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

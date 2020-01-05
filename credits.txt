@@ -1,0 +1,7 @@
+Godot
+Juan Linietsky, Ariel Manzur and contributors
+https://godotengine.org/
+
+Rocket Art
+JM.Atencia
+https://opengameart.org/content/rocket

@@ -12,11 +12,9 @@ func _on_Events_new_question(new_question: Question) -> void:
 	Events.emit_signal("init_answers", question.answer_options)
 	Events.emit_signal("load_question_media", question.media_path)
 
-func _on_Events_answer_selected(answer: String) -> void:
+func _on_Events_answer_selected(answer: String, global_position: Vector2) -> void:
 	if answer == question.correct_answer:
 		print("correct answer!")
 	else:
 		print("wrong answer!")
-		
-	Events.emit_signal("question_complete")
 	

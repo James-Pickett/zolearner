@@ -8,10 +8,20 @@ func _ready():
 	Events.connect("question_complete", self, "remove_self")
 
 func _on_AnswerButton_pressed():
-	Events.emit_signal("answer_selected", get_label().text)
+	var centerPos := rect_position + rect_scale * rect_size / 2.0
+	print("Center Pos " + str(centerPos))
+	
+	var globalPos := get_global_position()
+	print ("Global Pos " + str(globalPos))
+	
+	var centerGlobalPos := globalPos + rect_scale * rect_size / 2
+	print ("Center Global Pos " + str(centerGlobalPos))
+	
+	
+	Events.emit_signal("answer_selected", get_label().text, centerGlobalPos)
 	
 func set_text(text: String) -> void:
-	get_label().set_text(text)	
+	get_label().set_text(text)
 
 func get_label() -> Label:
 	for node in get_children():

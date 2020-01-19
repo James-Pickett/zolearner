@@ -22,6 +22,7 @@ editor/display_folded = true
 navpoly = SubResource( 1 )
 
 [node name="Rocket" parent="." instance=ExtResource( 2 )]
+position = Vector2( 640, 700 )
 z_index = 1
 
 [node name="GameSession" parent="." instance=ExtResource( 3 )]

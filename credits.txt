@@ -5,3 +5,7 @@ https://godotengine.org/
 Rocket Art
 JM.Atencia
 https://opengameart.org/content/rocket
+
+Planet Sprites
+Justin Nichol
+https://opengameart.org/content/20-planet-sprites

@@ -22,6 +22,9 @@ func _on_AnswerButton_pressed():
 	
 func set_text(text: String) -> void:
 	get_label().set_text(text)
+	
+func set_texture(texture_path: String) -> void:
+	texture_normal = load(texture_path)
 
 func get_label() -> Label:
 	for node in get_children():
